@@ -1,3 +1,10 @@
+Compound interests calculator
+=================
+
+![](https://raw.github.com/benji/compound-interests/master/screenshot.png)
+
+<b>Output</b><br/>
+
 ```Starting at $50,000.00
 End of year 1 (21 years old): $72,360.67
 End of year 2 (22 years old): $96,398.39
