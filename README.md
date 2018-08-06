@@ -5,13 +5,13 @@ Compound interests calculator
 
 Note: inflation is not modeled.
 
-Performing according to expectation:
+Performing according to expectation:  
 ![](https://raw.github.com/benji/compound-interests/master/screenshot1.png)
 
-Above expectation:
+Above expectation:  
 ![](https://raw.github.com/benji/compound-interests/master/screenshot2.png)
 
-Under performing:
+Under performing:  
 ![](https://raw.github.com/benji/compound-interests/master/screenshot3.png)
 
 <b>Output</b><br/>
