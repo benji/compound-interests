@@ -4,20 +4,20 @@ import matplotlib.pyplot as plt
 
 # Your money to start
 #initial_invest = 40000
-initial_invest = 190000
+initial_invest = 50000
 
 # What to use for yearly return rate?
 use_historical_stock_market_rates = True
 yearly_return_rate = 0.1092
 
 # monthly contribution
-invest_per_month = 700
+invest_per_month = 1000
 
 # number of years of simulation
 max_years = 20
 
 # your age right now
-age = 35
+age = 25
 
 # SP500 performance
 historical_stock_return = {
@@ -54,13 +54,11 @@ print 'Store average rate: {:,.2f}%'.format(stock_average_rate*100)
 
 cumulated_interests = 0
 cumulated_total = cumulated_principal = initial_invest
-plotx = []
-plot_y_principal = []
-plot_y_interests = []
-plot_y_total = []
-
-expected_capital = [cumulated_total]
-plot_y_expected = []
+plotx = [age]
+total_principal = [cumulated_total]
+total_interests = [0]
+total_actual = [cumulated_total]
+total_expected = [cumulated_total]
 
 print 'Starting at ${:,.2f}'.format(cumulated_total)
 
@@ -91,24 +89,34 @@ for y in range(1, max_years+1):
             y, age, cumulated_total)
 
     plotx.append(age)
-    plot_y_interests.append(cumulated_interests)
-    plot_y_principal.append(cumulated_principal)
-    plot_y_total.append(cumulated_principal+cumulated_interests)
+    total_interests.append(cumulated_interests)
+    total_principal.append(cumulated_principal)
+    total_actual.append(cumulated_principal+cumulated_interests)
 
-    year_expected_capital = expected_capital[len(
-        expected_capital)-1] * (1+stock_average_rate)
-    expected_capital.append(year_expected_capital)
-    plot_y_expected.append(year_expected_capital)
+    year_expected = total_expected[len(
+        total_expected)-1] * (1+stock_average_rate) + invest_per_month*12
+    print year_expected
+    total_expected.append(year_expected)
 
-plt.title("${:,.0f} over {} years ({}%)".format(
-    cumulated_total, max_years, yearly_return_rate*100))
+end_total_invested = total_principal[len(
+    total_principal)-1]
+end_total_actual = total_actual[len(total_actual)-1]
+overall_return_rate = (end_total_actual-end_total_invested) / \
+    end_total_invested/max_years
+
+prefix = ''
+if overall_return_rate >= 0:
+    prefix = '+'
+
+plt.title("${:,.0f} over {} years ({}{:,.2f}%)".format(
+    cumulated_total, max_years, prefix, overall_return_rate*100))
 plt.xlabel('Age')
 plt.ylabel('$')
 
-pp = plt.plot(plotx, plot_y_principal, linestyle='dotted', color='skyblue')
-pi = plt.plot(plotx, plot_y_interests, linestyle='dotted', color='green')
-pt = plt.plot(plotx, plot_y_total, color='red')
-pe = plt.plot(plotx, plot_y_expected, color='orange')
+pp = plt.plot(plotx, total_principal, color='skyblue')
+pi = plt.plot(plotx, total_interests, color='green')
+pt = plt.plot(plotx, total_actual, color='red')
+pe = plt.plot(plotx, total_expected, color='orange', linestyle='dashed')
 
 plt.legend((pp[0], pi[0], pt[0], pe[0]),
            ('Principal', 'Interests', 'Actual', 'Expected'))
