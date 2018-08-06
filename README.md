@@ -1,7 +1,11 @@
 Compound interests calculator
 =================
 
-![](https://raw.github.com/benji/compound-interests/master/screenshot.png)
+![](https://raw.github.com/benji/compound-interests/master/screenshot1.png)
+
+![](https://raw.github.com/benji/compound-interests/master/screenshot2.png)
+
+![](https://raw.github.com/benji/compound-interests/master/screenshot3.png)
 
 <b>Output</b><br/>
 
