@@ -95,7 +95,7 @@ for y in range(1, max_years+1):
 
     year_expected = total_expected[len(
         total_expected)-1] * (1+stock_average_rate) + invest_per_month*12
-    print year_expected
+    
     total_expected.append(year_expected)
 
 end_total_invested = total_principal[len(
